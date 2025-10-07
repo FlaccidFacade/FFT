@@ -194,18 +194,25 @@ cargo run --release
 
 ## ⚡ Performance Comparison
 
-Performance benchmarks are run automatically in CI/CD for 4096 samples. Here are typical results from a modern CPU:
+Performance benchmarks are run automatically for 4096 samples. Here are typical results:
 
 | Language    | Time (ms) | Relative Speed |
 |-------------|-----------|----------------|
-| Rust        | ~1.0      | 1x (fastest)   |
-| C++         | ~1.1      | ~1.1x          |
-| Java        | ~1.6      | ~1.6x          |
-| TypeScript  | ~4.8      | ~4.8x          |
-| JavaScript  | ~4.4      | ~4.4x          |
-| Python      | ~11.0     | ~11x           |
+| Rust        | 0.91      | 1.00x (fastest)|
+| C++         | 1.00      | 1.09x          |
+| Java        | 2.63      | 2.88x          |
+| JavaScript  | 4.11      | 4.49x          |
+| TypeScript  | 4.45      | 4.86x          |
+| Python      | 10.99     | 12.02x         |
 
 *Note: Actual performance varies by hardware and system load.*
+
+### Running Benchmarks
+
+```bash
+# Run comprehensive performance comparison
+./benchmark.sh
+```
 
 ### Performance Testing
 

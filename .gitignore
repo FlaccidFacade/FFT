@@ -35,3 +35,6 @@ rust/Cargo.lock
 # OS
 .DS_Store
 Thumbs.db
+
+# Benchmark results
+performance_results.txt
