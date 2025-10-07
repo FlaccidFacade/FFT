@@ -1,0 +1,165 @@
+name: FFT Multi-Language CI
+
+on:
+  push:
+    branches: [ main, master, copilot/** ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    name: Test All Languages
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    # Python setup
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    
+    # Node.js setup (for JavaScript and TypeScript)
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    # Java setup
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    # Rust setup
+    - name: Set up Rust
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: stable
+    
+    # C++ is already available in ubuntu-latest
+    
+    # Install TypeScript dependencies
+    - name: Install TypeScript dependencies
+      working-directory: ./typescript
+      run: npm install
+    
+    # Run Python tests
+    - name: Test Python FFT
+      working-directory: ./python
+      run: python3 test_fft.py
+    
+    # Run C++ tests
+    - name: Test C++ FFT
+      working-directory: ./cpp
+      run: |
+        make
+        ./test_fft
+    
+    # Run Java tests
+    - name: Test Java FFT
+      working-directory: ./java
+      run: |
+        javac FFT.java
+        javac TestFFT.java
+        java -ea TestFFT
+    
+    # Run JavaScript tests
+    - name: Test JavaScript FFT
+      working-directory: ./javascript
+      run: node test_fft.js
+    
+    # Run TypeScript tests
+    - name: Test TypeScript FFT
+      working-directory: ./typescript
+      run: npm test
+    
+    # Run Rust tests
+    - name: Test Rust FFT
+      working-directory: ./rust
+      run: cargo test --release
+    
+    # Upload coverage (placeholder for codecov integration)
+    - name: Upload coverage reports
+      if: false  # Disabled for now
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+
+  benchmark:
+    name: Performance Comparison
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    - name: Set up Rust
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: stable
+    
+    - name: Install TypeScript dependencies
+      working-directory: ./typescript
+      run: npm install
+    
+    - name: Run performance comparison
+      run: |
+        echo "## Performance Comparison (4096 samples)" > performance.md
+        echo "" >> performance.md
+        echo "| Language | Time (ms) |" >> performance.md
+        echo "|----------|-----------|" >> performance.md
+        
+        # Python
+        PYTHON_TIME=$(cd python && python3 test_fft.py 2>&1 | grep "4096 samples:" | awk '{print $4}')
+        echo "| Python | $PYTHON_TIME |" >> performance.md
+        
+        # C++
+        cd cpp && make > /dev/null 2>&1 && cd ..
+        CPP_TIME=$(cd cpp && ./test_fft 2>&1 | grep "4096 samples:" | awk '{print $4}')
+        echo "| C++ | $CPP_TIME |" >> performance.md
+        
+        # Java
+        cd java && javac FFT.java && javac TestFFT.java && cd ..
+        JAVA_TIME=$(cd java && java -ea TestFFT 2>&1 | grep "4096 samples:" | awk '{print $4}')
+        echo "| Java | $JAVA_TIME |" >> performance.md
+        
+        # JavaScript
+        JS_TIME=$(cd javascript && node test_fft.js 2>&1 | grep "4096 samples:" | awk '{print $4}')
+        echo "| JavaScript | $JS_TIME |" >> performance.md
+        
+        # TypeScript
+        TS_TIME=$(cd typescript && npm test 2>&1 | grep "4096 samples:" | awk '{print $4}')
+        echo "| TypeScript | $TS_TIME |" >> performance.md
+        
+        # Rust
+        RUST_TIME=$(cd rust && cargo run --release 2>&1 | grep "4096 samples:" | awk '{print $4}')
+        echo "| Rust | $RUST_TIME |" >> performance.md
+        
+        cat performance.md
+    
+    - name: Upload performance results
+      uses: actions/upload-artifact@v4
+      with:
+        name: performance-results
+        path: performance.md
