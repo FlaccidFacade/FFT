@@ -1,0 +1,13 @@
+{
+  "name": "fft-javascript",
+  "version": "1.0.0",
+  "description": "FFT implementation in JavaScript using standard library only",
+  "main": "fft.js",
+  "scripts": {
+    "start": "node fft.js",
+    "test": "node test_fft.js"
+  },
+  "keywords": ["fft", "signal-processing"],
+  "author": "",
+  "license": "MIT"
+}
