@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+
+# C++
+*.o
+*.out
+cpp/fft
+cpp/test_fft
+
+# Java
+*.class
+
+# JavaScript/TypeScript
+node_modules/
+*.js.map
+typescript/*.js
+typescript/*.d.ts
+!typescript/package*.json
+
+# Rust
+rust/target/
+rust/Cargo.lock
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Benchmark results
+performance_results.txt
