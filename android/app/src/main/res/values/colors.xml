@@ -15,4 +15,7 @@
     <color name="frequency_color">#FF00FFFF</color>
     <color name="grid_color">#33FFFFFF</color>
     <color name="text_overlay">#CCFFFFFF</color>
+    
+    <!-- Launcher icon -->
+    <color name="ic_launcher_background">#FF6200EE</color>
 </resources>

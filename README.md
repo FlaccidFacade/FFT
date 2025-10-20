@@ -44,6 +44,7 @@ This project implements the Cooley-Tukey FFT algorithm—a divide-and-conquer al
 - 🔧 **Standard library only**: No external dependencies for FFT computation
 - 🚀 **CI/CD ready**: GitHub Actions workflow included
 - 📈 **Automatic padding**: Handles non-power-of-2 input sizes
+- 📱 **Android App**: Real-time FFT visualizer with multi-language benchmarking
 
 ## 📁 Project Structure
 
@@ -81,6 +82,17 @@ FFT/
 │   │   └── main.rs
 │   ├── Cargo.toml
 │   └── README.md
+├── android/          # Android FFT Visualizer App 📱
+│   ├── app/
+│   │   ├── src/main/
+│   │   │   ├── java/com/flaccidfacade/fftvisualizer/
+│   │   │   ├── cpp/              # JNI wrapper for C++ FFT
+│   │   │   └── res/              # Android resources
+│   │   └── build.gradle.kts
+│   ├── build.gradle.kts
+│   ├── README.md
+│   ├── BUILD.md
+│   └── ARCHITECTURE.md
 ├── .github/
 │   └── workflows/
 │       └── ci.yml    # CI/CD configuration
@@ -160,6 +172,19 @@ cargo test --release
 cargo run --release
 ```
 
+### Android App
+
+See the [Android README](android/README.md) for detailed instructions on building and running the Android FFT Visualizer app.
+
+Quick start:
+```bash
+cd android
+./gradlew assembleDebug
+./gradlew installDebug
+```
+
+Or open the `android/` directory in Android Studio.
+
 ## 📚 Language-Specific Details
 
 ### Python
@@ -191,6 +216,13 @@ cargo run --release
 - **Edition**: 2021
 - **Features**: Zero-cost abstractions, memory safety
 - **Build**: Cargo with release optimizations
+
+### Android
+- **Language**: Kotlin
+- **SDK**: Android 34+ (Android 14+)
+- **NDK**: C++ FFT via JNI
+- **Features**: Real-time audio capture, live FFT visualization, performance benchmarking
+- **See**: [android/README.md](android/README.md) for details
 
 ## ⚡ Performance Comparison
 
@@ -280,6 +312,20 @@ Contributions are welcome! Please:
 3. Add tests for new features
 4. Ensure all tests pass
 5. Submit a pull request
+
+## 📱 Android FFT Visualizer
+
+This repository includes a comprehensive Android application that:
+- Captures live audio from the device microphone
+- Runs FFT analysis using multiple implementations (C++, Java)
+- Displays real-time visualizations in a grid layout
+- Benchmarks processing speed, accuracy, and divergence
+- Exports performance metrics to CSV
+- Provides interactive charts for analysis
+
+**Target Devices**: Samsung Galaxy S25 Ultra, Samsung Tab S10+, and any Android 14+ device
+
+**Learn More**: See [android/README.md](android/README.md), [android/BUILD.md](android/BUILD.md), and [android/ARCHITECTURE.md](android/ARCHITECTURE.md)
 
 ## 📄 License
 
