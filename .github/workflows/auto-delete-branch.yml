@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [closed]
 
+permissions:
+  contents: write
+  pull-requests: read
+
 jobs:
   delete-branch:
     name: Delete merged branch
