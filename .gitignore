@@ -4,15 +4,29 @@ __pycache__/
 *.so
 .Python
 *.egg-info/
+.coverage
+coverage.xml
+htmlcov/
 
 # C++
 *.o
 *.out
 cpp/fft
 cpp/test_fft
+*.gcda
+*.gcno
+*.info
 
 # Java
 *.class
+*.exec
+jacoco.xml
+jacoco-*.zip
+java/lib/
+java/doc/
+java/index.html
+java/test/
+java/coverage/
 
 # JavaScript/TypeScript
 node_modules/
@@ -20,6 +34,8 @@ node_modules/
 typescript/*.js
 typescript/*.d.ts
 !typescript/package*.json
+coverage/
+.nyc_output/
 
 # Rust
 rust/target/

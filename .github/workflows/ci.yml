@@ -42,52 +42,74 @@ jobs:
     
     # C++ is already available in ubuntu-latest
     
-    # Install TypeScript dependencies
+    # Install JavaScript/TypeScript dependencies
+    - name: Install JavaScript dependencies
+      working-directory: ./javascript
+      run: npm install
+      
     - name: Install TypeScript dependencies
       working-directory: ./typescript
       run: npm install
     
-    # Run Python tests
+    # Run Python tests with coverage
     - name: Test Python FFT
       working-directory: ./python
-      run: python3 test_fft.py
+      run: |
+        pip install coverage
+        coverage run test_fft.py
+        coverage xml
     
-    # Run C++ tests
+    # Run C++ tests with coverage
+    - name: Install lcov
+      run: sudo apt-get install -y lcov
+      
     - name: Test C++ FFT
       working-directory: ./cpp
-      run: |
-        make
-        ./test_fft
+      run: make coverage
     
-    # Run Java tests
+    # Run Java tests with coverage
+    - name: Download JaCoCo
+      working-directory: ./java
+      run: |
+        wget -q https://repo1.maven.org/maven2/org/jacoco/jacoco/0.8.11/jacoco-0.8.11.zip
+        unzip -q jacoco-0.8.11.zip
+        
     - name: Test Java FFT
       working-directory: ./java
       run: |
         javac FFT.java
         javac TestFFT.java
-        java -ea TestFFT
+        java -javaagent:lib/jacocoagent.jar=destfile=jacoco.exec -ea TestFFT
+        java -jar lib/jacococli.jar report jacoco.exec --classfiles FFT.class --classfiles TestFFT.class --sourcefiles . --xml jacoco.xml
     
-    # Run JavaScript tests
+    # Run JavaScript tests with coverage
     - name: Test JavaScript FFT
       working-directory: ./javascript
-      run: node test_fft.js
+      run: npm run coverage
     
-    # Run TypeScript tests
+    # Run TypeScript tests with coverage
     - name: Test TypeScript FFT
       working-directory: ./typescript
-      run: npm test
+      run: npm run coverage
     
-    # Run Rust tests
+    # Run Rust tests with coverage
+    - name: Install cargo-llvm-cov
+      run: cargo install cargo-llvm-cov
+      
     - name: Test Rust FFT
       working-directory: ./rust
-      run: cargo test --release
+      run: cargo llvm-cov --lcov --output-path lcov.info
     
-    # Upload coverage (placeholder for codecov integration)
-    - name: Upload coverage reports
-      if: false  # Disabled for now
+    # Upload coverage reports to Codecov
+    - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./python/coverage.xml,./cpp/coverage.info,./java/jacoco.xml,./javascript/coverage/lcov.info,./typescript/coverage/lcov.info,./rust/lcov.info
+        flags: python,cpp,java,javascript,typescript,rust
+        name: codecov-umbrella
+        fail_ci_if_error: false
+        verbose: true
 
   benchmark:
     name: Performance Comparison

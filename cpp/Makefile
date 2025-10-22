@@ -16,6 +16,15 @@ test_fft: test_fft.cpp fft_impl.o fft.h
 	$(CXX) $(CXXFLAGS) -o test_fft test_fft.cpp fft_impl.o
 
 clean:
-	rm -f fft test_fft *.o
+	rm -f fft test_fft *.o *.gcda *.gcno *.info
 
-.PHONY: all clean
+# Coverage target
+coverage: clean
+	$(CXX) -std=c++11 --coverage -O0 -c fft_impl.cpp -o fft_impl.o
+	$(CXX) -std=c++11 --coverage -O0 -o test_fft test_fft.cpp fft_impl.o
+	./test_fft
+	lcov --capture --directory . --output-file coverage.info --rc branch_coverage=1 --ignore-errors mismatch
+	lcov --remove coverage.info '/usr/*' --output-file coverage.info
+	lcov --list coverage.info
+
+.PHONY: all clean coverage

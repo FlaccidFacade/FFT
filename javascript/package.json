@@ -5,9 +5,16 @@
   "main": "fft.js",
   "scripts": {
     "start": "node fft.js",
-    "test": "node test_fft.js"
+    "test": "node test_fft.js",
+    "coverage": "c8 --reporter=lcov --reporter=text node test_fft.js"
   },
-  "keywords": ["fft", "signal-processing"],
+  "keywords": [
+    "fft",
+    "signal-processing"
+  ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "c8": "^10.1.3"
+  }
 }
