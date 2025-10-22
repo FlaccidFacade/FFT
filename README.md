@@ -319,8 +319,9 @@ The project uses GitHub Actions for continuous integration:
 - **Performance benchmarking**: Compares execution times across languages
 - **Multiple platforms**: Tested on Ubuntu (can be extended to Windows/macOS)
 - **Artifact upload**: Performance results saved for each run
+- **Auto branch delete**: Merged PR branches are automatically deleted to keep the repository clean
 
-See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for details.
+See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) and [`.github/workflows/auto-delete-branch.yml`](.github/workflows/auto-delete-branch.yml) for details.
 
 ### Badges
 
