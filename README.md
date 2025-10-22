@@ -317,6 +317,7 @@ function FFT(x):
 The project uses GitHub Actions for continuous integration:
 
 - **Automated testing**: All language tests run on each push
+- **Code coverage**: Multi-language coverage reports uploaded to Codecov
 - **Performance benchmarking**: Compares execution times across languages
 - **Multiple platforms**: Tested on Ubuntu (can be extended to Windows/macOS)
 - **Artifact upload**: Performance results saved for each run
@@ -324,12 +325,46 @@ The project uses GitHub Actions for continuous integration:
 
 See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) and [`.github/workflows/auto-delete-branch.yml`](.github/workflows/auto-delete-branch.yml) for details.
 
+### Code Coverage
+
+The project uses [Codecov](https://codecov.io/gh/FlaccidFacade/FFT) to track code coverage across all languages:
+
+- **Python**: `coverage.py` generates XML reports
+- **C++**: `gcov` and `lcov` generate coverage data
+- **Java**: JaCoCo generates XML reports
+- **JavaScript**: `c8` generates lcov reports
+- **TypeScript**: `c8` generates lcov reports
+- **Rust**: `cargo-llvm-cov` generates lcov reports
+
+Coverage reports are automatically generated and uploaded on every CI run. View detailed coverage reports and trends on [Codecov](https://codecov.io/gh/FlaccidFacade/FFT).
+
+To generate coverage locally:
+```bash
+# Python
+cd python && pip install coverage && coverage run test_fft.py && coverage report
+
+# C++
+cd cpp && make coverage
+
+# Java
+cd java && ./build.sh  # Downloads JaCoCo if needed
+
+# JavaScript
+cd javascript && npm run coverage
+
+# TypeScript
+cd typescript && npm run coverage
+
+# Rust
+cd rust && cargo install cargo-llvm-cov && cargo llvm-cov
+```
+
 ### Badges
 
 The README includes badges for:
 - CI/CD status
+- Code coverage percentage
 - Language versions
-- Code coverage (when configured with CodeCov)
 
 ## 🤝 Contributing
 
