@@ -1,6 +1,7 @@
 # FFT - Multi-Language Fast Fourier Transform Implementation
 
 [![CI Status](https://github.com/FlaccidFacade/FFT/workflows/FFT%20Multi-Language%20CI/badge.svg)](https://github.com/FlaccidFacade/FFT/actions)
+[![codecov](https://codecov.io/gh/FlaccidFacade/FFT/branch/main/graph/badge.svg)](https://codecov.io/gh/FlaccidFacade/FFT)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![C++](https://img.shields.io/badge/C++-11-00599C.svg)](https://isocpp.org/)
 [![Java](https://img.shields.io/badge/Java-17-red.svg)](https://www.oracle.com/java/)
