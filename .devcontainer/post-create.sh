@@ -2,26 +2,32 @@
 
 set -e
 
+# Get the workspace root (works both locally and in container)
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-/workspace}"
+if [ ! -d "$WORKSPACE_ROOT" ]; then
+    WORKSPACE_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+fi
+
 echo "🚀 Setting up FFT Multi-Language Development Environment..."
 
 # Install TypeScript dependencies
 echo "📦 Installing TypeScript dependencies..."
-cd /workspace/typescript
+cd "$WORKSPACE_ROOT/typescript"
 npm install
-cd /workspace
+cd "$WORKSPACE_ROOT"
 
 # Build C++ projects
 echo "🔨 Building C++ project..."
-cd /workspace/cpp
+cd "$WORKSPACE_ROOT/cpp"
 make clean
 make
-cd /workspace
+cd "$WORKSPACE_ROOT"
 
 # Build Rust project
 echo "🦀 Building Rust project..."
-cd /workspace/rust
+cd "$WORKSPACE_ROOT/rust"
 cargo build --release
-cd /workspace
+cd "$WORKSPACE_ROOT"
 
 # Display versions
 echo ""
