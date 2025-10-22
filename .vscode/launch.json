@@ -1,0 +1,153 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // Python Configurations
+        {
+            "name": "Python: FFT Main",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/python/fft.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/python",
+            "justMyCode": false
+        },
+        {
+            "name": "Python: Run Tests",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/python/test_fft.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/python",
+            "justMyCode": false
+        },
+        
+        // C++ Configurations
+        {
+            "name": "C++: FFT Main",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cpp/fft",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/cpp",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ FFT",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "C++: Run Tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cpp/test_fft",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/cpp",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++ FFT",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        
+        // Java Configurations
+        {
+            "name": "Java: FFT Main",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "FFT",
+            "projectName": "FFT",
+            "cwd": "${workspaceFolder}/java",
+            "classPaths": ["${workspaceFolder}/java"]
+        },
+        {
+            "name": "Java: Run Tests",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "TestFFT",
+            "projectName": "FFT",
+            "cwd": "${workspaceFolder}/java",
+            "classPaths": ["${workspaceFolder}/java"],
+            "vmArgs": ["-ea"]
+        },
+        
+        // JavaScript Configurations
+        {
+            "name": "JavaScript: FFT Main",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/javascript/fft.js",
+            "cwd": "${workspaceFolder}/javascript",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "name": "JavaScript: Run Tests",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/javascript/test_fft.js",
+            "cwd": "${workspaceFolder}/javascript",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
+        },
+        
+        // TypeScript Configurations
+        {
+            "name": "TypeScript: FFT Main",
+            "type": "node",
+            "request": "launch",
+            "preLaunchTask": "Build TypeScript",
+            "program": "${workspaceFolder}/typescript/fft.js",
+            "cwd": "${workspaceFolder}/typescript",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"],
+            "outFiles": ["${workspaceFolder}/typescript/**/*.js"]
+        },
+        {
+            "name": "TypeScript: Run Tests",
+            "type": "node",
+            "request": "launch",
+            "preLaunchTask": "Build TypeScript",
+            "program": "${workspaceFolder}/typescript/test_fft.js",
+            "cwd": "${workspaceFolder}/typescript",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"],
+            "outFiles": ["${workspaceFolder}/typescript/**/*.js"]
+        },
+        
+        // Rust Configurations
+        {
+            "name": "Rust: FFT Main",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/rust/target/debug/fft",
+            "args": [],
+            "cwd": "${workspaceFolder}/rust",
+            "preLaunchTask": "Build Rust FFT"
+        },
+        {
+            "name": "Rust: Run Tests",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/rust/target/debug/deps/fft-${command:rust-analyzer.debugSingle}",
+            "args": [],
+            "cwd": "${workspaceFolder}/rust",
+            "preLaunchTask": "Build Rust Tests"
+        }
+    ]
+}

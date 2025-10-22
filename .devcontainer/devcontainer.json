@@ -1,0 +1,117 @@
+{
+	"name": "FFT Multi-Language Development",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"username": "vscode",
+			"userUid": "1000",
+			"userGid": "1000"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+			"version": "latest"
+		}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				// Python
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.debugpy",
+				
+				// C++
+				"ms-vscode.cpptools",
+				"ms-vscode.cpptools-extension-pack",
+				"ms-vscode.cmake-tools",
+				
+				// Java
+				"vscjava.vscode-java-pack",
+				"vscjava.vscode-java-debug",
+				
+				// JavaScript/TypeScript
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ms-vscode.vscode-typescript-next",
+				
+				// Rust
+				"rust-lang.rust-analyzer",
+				"vadimcn.vscode-lldb",
+				
+				// General utilities
+				"EditorConfig.EditorConfig",
+				"eamodio.gitlens",
+				"github.vscode-github-actions"
+			],
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"files.autoSave": "afterDelay",
+				"editor.formatOnSave": true,
+				"editor.formatOnPaste": true,
+				"editor.tabSize": 4,
+				"editor.insertSpaces": true,
+				
+				// Python settings
+				"python.defaultInterpreterPath": "/usr/local/bin/python3",
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": false,
+				"python.linting.flake8Enabled": false,
+				"python.formatting.provider": "none",
+				"python.analysis.typeCheckingMode": "basic",
+				
+				// C++ settings
+				"C_Cpp.default.cppStandard": "c++11",
+				"C_Cpp.default.compilerPath": "/usr/bin/g++",
+				
+				// JavaScript/TypeScript settings
+				"typescript.tsdk": "node_modules/typescript/lib",
+				"javascript.format.enable": true,
+				"typescript.format.enable": true,
+				
+				// Rust settings
+				"rust-analyzer.checkOnSave.command": "clippy",
+				
+				// Editor settings
+				"[python]": {
+					"editor.tabSize": 4,
+					"editor.insertSpaces": true,
+					"editor.defaultFormatter": "ms-python.python"
+				},
+				"[cpp]": {
+					"editor.tabSize": 4,
+					"editor.insertSpaces": true
+				},
+				"[java]": {
+					"editor.tabSize": 4,
+					"editor.insertSpaces": true
+				},
+				"[javascript]": {
+					"editor.tabSize": 2,
+					"editor.insertSpaces": true,
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
+				"[typescript]": {
+					"editor.tabSize": 2,
+					"editor.insertSpaces": true,
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
+				"[rust]": {
+					"editor.tabSize": 4,
+					"editor.insertSpaces": true,
+					"editor.defaultFormatter": "rust-lang.rust-analyzer"
+				}
+			}
+		}
+	},
+
+	"forwardPorts": [],
+	
+	"postCreateCommand": "bash .devcontainer/post-create.sh",
+	
+	"remoteUser": "vscode"
+}

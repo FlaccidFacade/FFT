@@ -1,0 +1,172 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // C++ Build Tasks
+        {
+            "label": "Build C++ FFT",
+            "type": "shell",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceFolder}/cpp"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build C++ FFT using Makefile"
+        },
+        {
+            "label": "Clean C++ FFT",
+            "type": "shell",
+            "command": "make clean",
+            "options": {
+                "cwd": "${workspaceFolder}/cpp"
+            },
+            "problemMatcher": [],
+            "detail": "Clean C++ build artifacts"
+        },
+        
+        // TypeScript Build Tasks
+        {
+            "label": "Build TypeScript",
+            "type": "shell",
+            "command": "npm run build",
+            "options": {
+                "cwd": "${workspaceFolder}/typescript"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$tsc"],
+            "detail": "Compile TypeScript to JavaScript"
+        },
+        
+        // Rust Build Tasks
+        {
+            "label": "Build Rust FFT",
+            "type": "shell",
+            "command": "cargo build",
+            "options": {
+                "cwd": "${workspaceFolder}/rust"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$rustc"],
+            "detail": "Build Rust FFT using Cargo"
+        },
+        {
+            "label": "Build Rust Tests",
+            "type": "shell",
+            "command": "cargo test --no-run",
+            "options": {
+                "cwd": "${workspaceFolder}/rust"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$rustc"],
+            "detail": "Build Rust tests without running them"
+        },
+        {
+            "label": "Build Rust FFT (Release)",
+            "type": "shell",
+            "command": "cargo build --release",
+            "options": {
+                "cwd": "${workspaceFolder}/rust"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": ["$rustc"],
+            "detail": "Build Rust FFT in release mode"
+        },
+        
+        // Test Tasks
+        {
+            "label": "Run All Tests",
+            "type": "shell",
+            "command": "./run_tests.sh",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Run tests for all languages"
+        },
+        {
+            "label": "Run Python Tests",
+            "type": "shell",
+            "command": "python3 test_fft.py",
+            "options": {
+                "cwd": "${workspaceFolder}/python"
+            },
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "Run Python FFT tests"
+        },
+        {
+            "label": "Run C++ Tests",
+            "type": "shell",
+            "command": "make && ./test_fft",
+            "options": {
+                "cwd": "${workspaceFolder}/cpp"
+            },
+            "group": "test",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build and run C++ FFT tests"
+        },
+        {
+            "label": "Run Java Tests",
+            "type": "shell",
+            "command": "javac FFT.java TestFFT.java && java -ea TestFFT",
+            "options": {
+                "cwd": "${workspaceFolder}/java"
+            },
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "Compile and run Java FFT tests"
+        },
+        {
+            "label": "Run JavaScript Tests",
+            "type": "shell",
+            "command": "node test_fft.js",
+            "options": {
+                "cwd": "${workspaceFolder}/javascript"
+            },
+            "group": "test",
+            "problemMatcher": [],
+            "detail": "Run JavaScript FFT tests"
+        },
+        {
+            "label": "Run TypeScript Tests",
+            "type": "shell",
+            "command": "npm test",
+            "options": {
+                "cwd": "${workspaceFolder}/typescript"
+            },
+            "group": "test",
+            "problemMatcher": ["$tsc"],
+            "detail": "Build and run TypeScript FFT tests"
+        },
+        {
+            "label": "Run Rust Tests",
+            "type": "shell",
+            "command": "cargo test --release",
+            "options": {
+                "cwd": "${workspaceFolder}/rust"
+            },
+            "group": "test",
+            "problemMatcher": ["$rustc"],
+            "detail": "Run Rust FFT tests"
+        }
+    ]
+}

@@ -26,7 +26,6 @@ rust/target/
 rust/Cargo.lock
 
 # IDEs
-.vscode/
 .idea/
 *.swp
 *.swo

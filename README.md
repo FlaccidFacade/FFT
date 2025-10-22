@@ -10,9 +10,10 @@
 
 A collection of Fast Fourier Transform (FFT) implementations across six programming languages: **Python**, **C++**, **Java**, **JavaScript**, **TypeScript**, and **Rust**. Each implementation uses only standard library functions and includes comprehensive test suites with performance benchmarks.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
+- [Quick Start with Codespaces](#quick-start-with-codespaces) ⚡
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
@@ -36,6 +37,18 @@ This project implements the Cooley-Tukey FFT algorithm—a divide-and-conquer al
 - Automatically pads inputs to the next power of 2
 - Produces executable artifacts
 
+## ⚡ Quick Start with Codespaces
+
+Want to start coding immediately without any setup? Use GitHub Codespaces!
+
+1. Click the **"Code"** button → **"Codespaces"** tab → **"Create codespace"**
+2. Wait 3-5 minutes for automatic setup
+3. Start debugging with **one click** (press `F5`)
+
+**Everything is pre-configured**: All languages, dependencies, debugging, and testing ready to go!
+
+👉 See [QUICKSTART.md](QUICKSTART.md) for a detailed walkthrough with screenshots.
+
 ## ✨ Features
 
 - 🌐 **Multi-language**: Six complete implementations
@@ -45,6 +58,7 @@ This project implements the Cooley-Tukey FFT algorithm—a divide-and-conquer al
 - 🚀 **CI/CD ready**: GitHub Actions workflow included
 - 📈 **Automatic padding**: Handles non-power-of-2 input sizes
 - 📱 **Android App**: Real-time FFT visualizer with multi-language benchmarking
+- ☁️ **Codespaces ready**: One-click development environment with debugging pre-configured
 
 ## 📁 Project Structure
 
@@ -102,7 +116,19 @@ FFT/
 
 ## 🚀 Installation
 
-### Prerequisites
+### Option 1: GitHub Codespaces (Recommended) ⚡
+
+Get started instantly with a pre-configured development environment:
+
+1. Click the green "**Code**" button above
+2. Select the "**Codespaces**" tab
+3. Click "**Create codespace on main**"
+
+**That's it!** In a few minutes, you'll have a fully configured environment with all dependencies installed and ready to debug with one click. See [DEVCONTAINER.md](DEVCONTAINER.md) for details.
+
+### Option 2: Local Installation
+
+#### Prerequisites
 
 Make sure you have the following installed:
 
@@ -112,7 +138,7 @@ Make sure you have the following installed:
 - **Node.js 20+** (for JavaScript and TypeScript)
 - **Rust 1.56+** (with cargo)
 
-### Clone the Repository
+#### Clone the Repository
 
 ```bash
 git clone https://github.com/FlaccidFacade/FFT.git
